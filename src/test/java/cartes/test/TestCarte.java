@@ -77,4 +77,20 @@ class TestCarte {
 		System.out.println("Joueur 1 : " + main1);
 		System.out.println("Joueur 2 : " + main2);
 	}
+	
+	@Test
+	void testSuppressions() {
+		// suppression avec index
+		jeu.remove(11);
+		System.out.println(jeu);
+		// suppression avec objet 
+		Carte carte = new Carte(Valeur.DIX, Signe.PIQUE);
+		jeu.remove(carte);
+		System.out.println(jeu);
+		// suppression avec objet 
+		Carte carte2 = jeu.get(1);
+		jeu.remove(carte2);
+		System.out.println(jeu);
+		
+	}
 }
