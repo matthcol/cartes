@@ -3,8 +3,7 @@ package cartes;
 public class Carte {
 	private Valeur valeur;
 	private Signe signe;
-	private Couleur couleur;
-	
+
 	public Carte(Valeur valeur, Signe signe) {
 		super();
 		this.valeur = valeur;
@@ -23,11 +22,9 @@ public class Carte {
 	public void setSigne(Signe signe) {
 		this.signe = signe;
 	}
+
 	public Couleur getCouleur() {
-		return couleur;
-	}
-	public void setCouleur(Couleur couleur) {
-		this.couleur = couleur;
+		return signe.getCouleur();
 	}
 
 	@Override
