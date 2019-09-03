@@ -3,6 +3,7 @@ package collection.test;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.NavigableSet;
 import java.util.Set;
@@ -20,6 +21,8 @@ class TestCollection {
 		for (String ville : villes) {
 			System.out.println(ville);
 		}
+		// Collections.sort(villes);
+		System.out.println(villes);
 	}
 	
 	@Test
@@ -34,7 +37,10 @@ class TestCollection {
 	
 	@Test
 	void testNavigableSet() {
-		NavigableSet<String> villes = new TreeSet<>();  
+		NavigableSet<String> villes = new TreeSet<>(
+				// Comparator.reverseOrder()
+				// String::compareToIgnoreCase
+				);  
 		Collections.addAll(villes, "Toulouse", "Pau", "Lyon", "Bayonne", "Gaillac", "東京");
 		for (var ville : villes) {
 			System.out.println(ville);
@@ -43,6 +49,9 @@ class TestCollection {
 		System.out.println("1ere ville : " + firstVille);
 		var plusPetits = villes.headSet("J");
 		System.out.println("Plus petites :" + plusPetits);
+		villes.add("Orange");
+		villes.add("london");
+		System.out.println(villes);
 	}
 
 }

@@ -4,10 +4,13 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.NavigableSet;
 import java.util.Set;
+import java.util.TreeSet;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -144,15 +147,33 @@ class TestCarte {
 	}
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	@Test
+	void testSortJeu() {
+		Collections.sort(jeu, 
+				Comparator.comparing(Carte::getValeur)
+						.thenComparing(Carte::getSigne));
+		System.out.println(jeu);
+		Collections.sort(jeu, 
+				Comparator.comparing(Carte::getSigne)
+						.thenComparing(Carte::getValeur));
+		System.out.println(jeu);
+		//NavigableSet<Carte> set = new TreeSet<>(jeu);
+		Collections.sort(jeu, 
+				Comparator.comparing(Carte::getSigne)
+						.thenComparing(Carte::getValeur, Comparator.reverseOrder()));
+		System.out.println(jeu);
+		Collections.sort(jeu, 
+				Comparator.comparing(Carte::getSigne)
+						.thenComparing(Carte::getValeur, 
+								(v1,v2)->(v1.ordinal() + 12)%13 
+											- (v2.ordinal() + 12)%13)); 
+		System.out.println(jeu);
+		Collections.sort(jeu, 
+				Comparator.comparing(Carte::getSigne)
+						.thenComparing(Carte::getValeur, 
+								Comparator.comparing(Valeur::orderAsGreatest)));
+		System.out.println(jeu);
+	}
+
 	
 }
