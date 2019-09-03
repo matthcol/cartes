@@ -105,6 +105,26 @@ class TestCarte {
 		res = carte.equals(ville);
 		System.out.println(res);
 	}
+
+	@Test
+	void testDoublonEnsemble() {
+		Set<Carte> set = new HashSet<>(jeu);
+		System.out.println("Taille avant ajout : " + set.size());
+		Carte carte = new Carte(Valeur.CINQ, Signe.COEUR);
+		boolean res = set.add(carte);
+		System.out.println("Ajout : " + res);
+		System.out.println("Taille après ajout : " + set.size());
+	}
+	
+	@Test
+	void testDoublonEnsemble2() {
+		Set<Carte> set = new HashSet<>();
+		System.out.println("Taille avant ajout : " + set.size());
+		Carte carte = new Carte(Valeur.CINQ, Signe.COEUR);
+		boolean res = set.add(carte);
+		System.out.println("Ajout : " + res);
+		System.out.println("Taille après ajout : " + set.size());
+	}
 	
 	@Test
 	void testRechercheEnsemble() {
