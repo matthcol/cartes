@@ -131,14 +131,16 @@ class TestCarte {
 		Set<Carte> set = new HashSet<>(jeu);
 		Carte carte = new Carte(Valeur.CINQ, Signe.COEUR);
 		boolean res = set.contains(carte);
-		System.out.println(res);
+		//System.out.println(res);
+		assertTrue(res);
 	}
 	
 	@Test
 	void testRechercheListe() {
 		Carte carte = new Carte(Valeur.CINQ, Signe.COEUR);
 		boolean res = jeu.contains(carte);
-		System.out.println(res);
+		//System.out.println(res);
+		assertTrue(res);
 	}
 	
 	
