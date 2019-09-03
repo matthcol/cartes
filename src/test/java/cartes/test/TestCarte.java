@@ -4,8 +4,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -93,4 +95,42 @@ class TestCarte {
 		System.out.println(jeu);
 		
 	}
+	
+	@Test
+	void testEqualsNotCarte() {
+		Carte carte = new Carte(Valeur.CINQ, Signe.COEUR);
+		String ville = "Toulouse";
+		boolean res = ville.equals(carte);
+		System.out.println(res);
+		res = carte.equals(ville);
+		System.out.println(res);
+	}
+	
+	@Test
+	void testRechercheEnsemble() {
+		Set<Carte> set = new HashSet<>(jeu);
+		Carte carte = new Carte(Valeur.CINQ, Signe.COEUR);
+		boolean res = set.contains(carte);
+		System.out.println(res);
+	}
+	
+	@Test
+	void testRechercheListe() {
+		Carte carte = new Carte(Valeur.CINQ, Signe.COEUR);
+		boolean res = jeu.contains(carte);
+		System.out.println(res);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

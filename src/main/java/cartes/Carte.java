@@ -1,5 +1,7 @@
 package cartes;
 
+import java.util.Objects;
+
 public class Carte {
 	private Valeur valeur;
 	private Signe signe;
@@ -30,6 +32,27 @@ public class Carte {
 	@Override
 	public String toString() {
 		return valeur + " " + signe;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(signe, valeur);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (this.getClass() != obj.getClass())
+			return false;
+		Carte other = (Carte) obj;
+		if (this.signe != other.signe)
+			return false;
+		if (this.valeur != other.valeur)
+			return false;
+		return true;
 	}
 
 	
