@@ -36,10 +36,13 @@ class TestCollection {
 	void testNavigableSet() {
 		NavigableSet<String> villes = new TreeSet<>();  
 		Collections.addAll(villes, "Toulouse", "Pau", "Lyon", "Bayonne", "Gaillac", "東京");
-		for (String ville : villes) {
+		for (var ville : villes) {
 			System.out.println(ville);
 		}
 		String firstVille = villes.first();
+		System.out.println("1ere ville : " + firstVille);
+		var plusPetits = villes.headSet("J");
+		System.out.println("Plus petites :" + plusPetits);
 	}
 
 }
