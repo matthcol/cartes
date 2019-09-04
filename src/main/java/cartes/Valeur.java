@@ -8,4 +8,5 @@ public enum Valeur {
 		int nbValeur = Valeur.values().length;
 		return (this.ordinal() + nbValeur - 1)%nbValeur;
 	}
+	
 }

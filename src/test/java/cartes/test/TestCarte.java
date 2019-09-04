@@ -11,11 +11,13 @@ import java.util.List;
 import java.util.NavigableSet;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import cartes.Carte;
+import cartes.Couleur;
 import cartes.Signe;
 import cartes.Valeur;
 
@@ -175,5 +177,83 @@ class TestCarte {
 		System.out.println(jeu);
 	}
 
+	@Test
+	void testMapReduce() {
+		var res = jeu.stream()
+			.map(Carte::getValeur)
+			.min(Comparator.naturalOrder());
+		System.out.println(res);
+		
+		var res2 = jeu.stream()
+				.filter(c -> c.getSigne() == Signe.COEUR)
+				.map(Carte::getValeur)
+				.mapToInt(Valeur::ordinal)
+				.sum();
+		System.out.println(res2);
+	}
+	
+	@Test
+	void testPipeline1() {
+		jeu.stream()
+			.filter(c -> c.getCouleur() == Couleur.ROUGE)
+			.forEach(System.out::println);
+	}
+	
+	@Test
+	void testPipeline2() {
+		var res = jeu.stream()
+			.filter(c -> c.getCouleur() == Couleur.ROUGE)
+			.collect(Collectors.groupingBy(Carte::getSigne));
+		System.out.println(res);
+	}
+	
+	@Test
+	void testPipeline3() {
+		var res = jeu.stream()
+			.filter(c -> c.getSigne() != Signe.PIQUE)
+			.collect(Collectors.groupingBy(Carte::getSigne, Collectors.counting()));
+		System.out.println(res);
+	}
+	
+	
+	@Test
+	void testPipeline0() {
+		Collections.shuffle(jeu);
+		var res = jeu.stream()
+			.filter(c -> c.getSigne() != Signe.PIQUE)
+			.limit(10)
+			.collect(Collectors.toCollection(
+					()->new TreeSet<>(Comparator.comparing(Carte::getValeur))));
+			//.collect(Collectors.toCollection(TreeSet::new));
+			//.collect(Collectors.toList());
+			//.forEach(System.out::println);		
+		System.out.println(res);
+	}
+	
+	@Test
+	void testPipeline0101() {
+		Collections.shuffle(jeu);
+		// NavigableSet<Carte> main
+		var res = jeu.stream()
+			.limit(10)
+			.filter(c -> c.getSigne() != Signe.PIQUE)		
+			//.map(Carte::getValeur)
+			//.collect(Collectors.toList());
+			//.collect(Collectors.toCollection(ArrayList::new));
+			//.collect(Collectors.toCollection(TreeSet::new));
+			.collect(Collectors.toCollection(
+					() -> new TreeSet<>(Comparator.comparing(Carte::getValeur))
+			));
+//		    .map(Carte::getSigne)
+//			.map(Signe::getCouleur)
+//			.map(Object::toString)
+			//.map(Signe::getSymbol)
+			//.collect(Collectors.joining(", "));
+			//.collect(Collectors.toCollection(
+			//		()->new TreeSet<>(Comparator.comparing(Carte::getValeur))));
+			//.collect(Collectors.toCollection(TreeSet::new));
+			//.forEach(System.out::println);		
+		System.out.println(res);
+	}	
 	
 }
