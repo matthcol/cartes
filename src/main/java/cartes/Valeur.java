@@ -9,4 +9,12 @@ public enum Valeur {
 		return (this.ordinal() + nbValeur - 1)%nbValeur;
 	}
 	
+	public String toStringNumeric() {
+		if (ordinal() == AS.ordinal() || ordinal() >= VALET.ordinal()) {
+			return name().toLowerCase();
+		} else {
+			return "" + (1+ordinal());
+		}
+	}
+	
 }

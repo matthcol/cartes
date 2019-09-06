@@ -10,8 +10,10 @@ import java.util.List;
 import java.util.Vector;
 
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -24,6 +26,11 @@ public class PokerWindow extends JFrame {
 	private JButton buttonDraw;
 	private JButton buttonShuffle;
 	private JButton buttonReset;
+	JLabel labelValeur;
+	JLabel labelSigne;
+	JLabel labelCouleur;
+	JLabel labelImageCarte;
+	
 	
 	private JList<Carte> listCards;
 	private ListModelCarte jeu;
@@ -51,14 +58,56 @@ public class PokerWindow extends JFrame {
 		panelDraw.add(new JScrollPane(listCards));
 		rootPane.add(panelDraw, BorderLayout.WEST);
 		// all-in
-		JPanel panelAllIn = new JPanel();
+		JPanel panelAllIn = new JPanel(new GridLayout(0, 1));
 		panelAllIn.setPreferredSize(new Dimension(400, 400));
 		rootPane.add(panelAllIn, BorderLayout.CENTER);
+		labelValeur = new JLabel();
+		labelSigne = new JLabel();
+		labelCouleur = new JLabel();
+		labelImageCarte = new JLabel();
+//		panelAllIn.add(labelValeur);
+//		panelAllIn.add(labelSigne);
+//		panelAllIn.add(labelCouleur);
+		panelAllIn.add(labelImageCarte);
 		// events
 		buttonShuffle.addActionListener(e->jeu.shuffle());
+		buttonReset.addActionListener(this::resetAction);
+		buttonDraw.addActionListener(this::drawAction);
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		// finalisation
 		this.pack();
+	}
+	
+	private void resetAction(ActionEvent e) {
+		jeu.reset();
+		deckCheck();
+	}
+	
+	private void drawAction(ActionEvent e) {
+		Carte carte = jeu.removeElementAt(0);
+		displayCarte(carte);
+		deckCheck();
+	}
+	
+	private void deckCheck( ) {
+		buttonDraw.setEnabled(jeu.getSize()>0);
+	}
+	
+	ImageIcon imagefileCarte(Carte carte) {
+		String filename = "/" + carte.getValeur().toStringNumeric()
+                + "_"
+                + carte.getSigne().toString().toLowerCase()
+                + ".png";
+		System.out.println(filename);
+		return new ImageIcon(
+                getClass().getResource(filename));
+	}
+	
+	private void displayCarte(Carte carte) {
+		labelValeur.setText(carte.getValeur().toString());
+		labelSigne.setText(carte.getSigne().getSymbol());
+		labelCouleur.setText(carte.getCouleur().toString());
+		labelImageCarte.setIcon(imagefileCarte(carte));
 	}
 	
 	public static void main(String[] args) {
