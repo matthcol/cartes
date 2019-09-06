@@ -18,6 +18,7 @@ import org.junit.jupiter.api.Test;
 
 import cartes.Carte;
 import cartes.Couleur;
+import cartes.JeuCarte;
 import cartes.Signe;
 import cartes.Valeur;
 
@@ -26,13 +27,7 @@ class TestCarte {
 	
 	@BeforeEach
 	void initJeu() {
-		jeu = new LinkedList<>();
-		for (Signe signe: Signe.values()) {
-			for (Valeur valeur: Valeur.values()) {
-				Carte carte = new Carte(valeur, signe);
-				jeu.add(carte);
-			}
-		}
+		jeu = JeuCarte.nouveauJeu();
 	}
 
 
