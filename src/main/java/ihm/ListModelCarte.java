@@ -6,7 +6,6 @@ import java.util.Collections;
 import java.util.List;
 
 import javax.swing.AbstractListModel;
-import javax.swing.DefaultListModel;
 
 import cartes.Carte;
 import cartes.JeuCarte;

@@ -1,7 +1,9 @@
 package ihm;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.util.List;
@@ -36,8 +38,15 @@ public class PokerWindow extends JFrame {
 		// panneau pioche
 		JPanel panelDraw = new JPanel();
 		panelDraw.setLayout(new BoxLayout(panelDraw,BoxLayout.Y_AXIS ));
+		JPanel panelButtons = new JPanel();
+		panelButtons.setBackground(Color.RED);
 		buttonDraw = new JButton("Draw");
-		panelDraw.add(buttonDraw);
+		panelButtons.add(buttonDraw);
+		buttonShuffle = new JButton("Shuffle");
+		panelButtons.add(buttonShuffle);
+		buttonReset = new JButton("Reset");
+		panelButtons.add(buttonReset);
+		panelDraw.add(panelButtons);
 		listCards = new JList<Carte>(jeu);
 		panelDraw.add(new JScrollPane(listCards));
 		rootPane.add(panelDraw, BorderLayout.WEST);
@@ -46,6 +55,7 @@ public class PokerWindow extends JFrame {
 		panelAllIn.setPreferredSize(new Dimension(400, 400));
 		rootPane.add(panelAllIn, BorderLayout.CENTER);
 		// events
+		buttonShuffle.addActionListener(e->jeu.shuffle());
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		// finalisation
 		this.pack();
