@@ -11,17 +11,15 @@ public class PokerWindow extends JFrame {
 		buttonDraw = new JButton("Draw");
 		this.add(buttonDraw);
 		// events
-		
+		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		// finalisation
 		this.pack();
 	}
 	
 	public static void main(String[] args) {
-		 javax.swing.SwingUtilities.invokeLater(new Runnable() {
-	            public void run() {
+		 javax.swing.SwingUtilities.invokeLater(() -> {
 	                PokerWindow ihm = new PokerWindow();
 	                ihm.setVisible(true);
-	            }
-	        });
+	            });
 	}
 }
