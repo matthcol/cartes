@@ -1,9 +1,12 @@
 pipeline {
     agent { 
     	label 'master'
-    	jdk = tool name :'jdk8'
-    	env.JAVA_HOME = ${jdk}
     }
+    
+    
+    jdk = tool name :'jdk8'
+    env.JAVA_HOME = ${jdk}
+    
     
     stages{
         stage('build'){
