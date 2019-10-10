@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
+import java.net.URL;
 import java.util.List;
 import java.util.Vector;
 
@@ -94,19 +95,20 @@ public class PokerWindow extends JFrame {
 	}
 	
 	ImageIcon imagefileCarte(Carte carte) {
-		String filename = "/" + carte.getValeur().toStringNumeric()
+		String filename = carte.getValeur().toStringNumeric()
                 + "_"
                 + carte.getSigne().toString().toLowerCase()
                 + ".png";
 		System.out.println(filename);
-		return new ImageIcon(
-                getClass().getResource(filename));
+		URL url = getClass().getResource(filename);
+		System.out.println(url);
+		return url==null?null:new ImageIcon(url);
 	}
 	
 	private void displayCarte(Carte carte) {
-		labelValeur.setText(carte.getValeur().toString());
-		labelSigne.setText(carte.getSigne().getSymbol());
-		labelCouleur.setText(carte.getCouleur().toString());
+//		labelValeur.setText(carte.getValeur().toString());
+//		labelSigne.setText(carte.getSigne().getSymbol());
+//		labelCouleur.setText(carte.getCouleur().toString());
 		labelImageCarte.setIcon(imagefileCarte(carte));
 	}
 	
