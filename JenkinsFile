@@ -1,12 +1,11 @@
 pipeline {
     agent { 
-    	label 'master'
+    	node { 
+    		label 'master'
+    		env.JAVA_HOME="${tool 'jdk8'}"
+    		env.PATH="${env.JAVA_HOME}/bin:${env.PATH}"
+    	}
     }
-    
-    
-    jdk = tool name :'jdk8'
-    env.JAVA_HOME = ${jdk}
-    
     
     stages{
         stage('build'){
