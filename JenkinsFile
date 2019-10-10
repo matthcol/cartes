@@ -26,6 +26,16 @@ pipeline {
                 bat "mvn test"
             }
         }
+        stage('package'){
+            steps{
+                bat "mvn -DskipTests package"
+            }
+        }
+        stage('deliver'){
+            steps{
+                echo "TODO : deliver"
+            }
+        }
     }
     post{
     	always {
