@@ -6,6 +6,23 @@ pipeline {
             steps{
                 bat "mvn clean compile"
             }
+             post {
+		        always {
+		            echo 'compile done'
+		        }
+		        success {
+		            echo 'I succeeeded!'
+		        }
+		        unstable {
+		            echo 'I am unstable :/'
+		        }
+		        failure {
+		            echo 'I failed :('
+		        }
+		        changed {
+		            echo 'Things were different before...'
+		        }
+    }
         }
         stage('test'){
             steps{
