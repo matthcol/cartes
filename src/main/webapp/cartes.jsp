@@ -8,6 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Super Poker Las Vegas</title>
+<link rel="stylesheet" type="text/css" href="css/main.css">
 </head>
 <body>
 <% 
@@ -15,11 +16,11 @@
 	JeuCarte jeu = (JeuCarte) session.getAttribute("jeu");
 %>
 <main>
-<section>
+<section id="deck-section">
 <a href=""><img id="deck" src="images/dos-carte.png" alt="deck"></a>
 <p>Nombre de cartes : <%=jeu.taille() %></p>
 </section>
-<section>
+<section id="board-section">
 <%if (Objects.nonNull(carte)) {%>
 <img id="see" src="images/<%=carte.filename() %>" alt="carte">
 <% } %>

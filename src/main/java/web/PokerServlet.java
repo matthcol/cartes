@@ -36,7 +36,7 @@ public class PokerServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		JeuCarte jeu = (JeuCarte) session.getAttribute("jeu");
-		boolean reset = Boolean.getBoolean(request.getParameter("reset"));
+		boolean reset = Boolean.parseBoolean(request.getParameter("reset"));
 		if (Objects.isNull(jeu)||reset) {
 			jeu = new JeuCarte(true);
 			session.setAttribute("jeu", jeu);
