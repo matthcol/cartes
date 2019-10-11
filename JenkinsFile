@@ -33,7 +33,7 @@ pipeline {
         }
         stage('deliver'){
             steps{
-                echo "TODO : deliver"
+                bat 'jboss-cli.bat -c --commands="undeploy superPoker.war,deploy target/superPoker.war"'
             }
         }
     }
