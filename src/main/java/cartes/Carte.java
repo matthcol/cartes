@@ -55,5 +55,10 @@ public class Carte {
 		return true;
 	}
 
-	
+	public String filename() {
+		return this.getValeur().toStringNumeric()
+                + "_"
+                + this.getSigne().toString().toLowerCase()
+                + ".png";
+	}
 }

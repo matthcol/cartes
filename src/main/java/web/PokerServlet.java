@@ -17,7 +17,7 @@ import cartes.JeuCarte;
 /**
  * Servlet implementation class PokerServlet
  */
-@WebServlet("/")
+@WebServlet("/poker")
 public class PokerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
