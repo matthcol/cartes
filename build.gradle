@@ -1,0 +1,54 @@
+/*
+ * For more details take a look at the Java Libraries chapter in the Gradle
+ * User Manual available at
+ * https://docs.gradle.org/5.6/userguide/java_plugin.html 
+ * https://docs.gradle.org/5.6/userguide/java_library_plugin.html
+ * https://docs.gradle.org/5.6/userguide/war_plugin.html
+ */
+
+plugins {
+    // Apply the java-library (jar) or java/application (jar executable) or war (war) 
+    id 'war'
+}
+
+repositories {
+    // Use jcenter for resolving your dependencies.
+    // You can declare any Maven/Ivy/file repository here.
+    //jcenter()
+    mavenCentral()
+}
+
+dependencies {
+	compileOnly  group: 'javax.servlet', name: 'javax.servlet-api', version: '4.0.1'
+	testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.5.2'
+	//testImplementation 'org.junit.jupiter:junit-jupiter-api:5.5.2'
+	testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.5.2'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+
+// exemple of post action in an existing task
+war {
+	doLast {
+		println "do something after war" 
+	}
+}
+
+
+// new task
+task afterTest {
+	dependsOn 'test'
+	doLast {
+		println "after test job"
+	}
+}
+
+// copy task : keep a copy of generated war in the project root directory
+task copyWar(type: Copy) {
+	dependsOn 'war'
+	from war.archivePath
+	into '.'
+}
