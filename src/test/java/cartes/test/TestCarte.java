@@ -39,10 +39,10 @@ class TestCarte {
 	@Test
 	void testEqualsFieldsEquals() {
 		// given
-		Carte c1 = new Carte(Valeur.DAME, Signe.COEUR);
-		Carte c2 = new Carte(Valeur.DAME, Signe.COEUR);
+		var carte1 = new Carte(Valeur.DAME, Signe.COEUR);
+		var carte2 = new Carte(Valeur.DAME, Signe.COEUR);
 		// when
-		boolean res = c1.equals(c2);
+		boolean res = carte1.equals(carte2);
 		// then
 		assertTrue(res);
 	}
